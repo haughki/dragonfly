@@ -152,7 +152,7 @@ class DispatchingHandler(logging.Handler):
 def _setup_stderr_handler():
     stderr_handler = logging.StreamHandler(sys.stderr)
     stderr_handler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(name)s (%(levelname)s): %(message)s")
+    formatter = logging.Formatter("%(name)s: %(filename)s:%(lineno)s - %(funcName)30s() - %(message)s")
     stderr_handler.setFormatter(formatter)
     return stderr_handler
 
@@ -167,8 +167,8 @@ def _setup_file_handler():
         home_path = os.path.expanduser("~")
         log_file_path = os.path.join(home_path, ".dragonfly.log")
         _file_handler = logging.FileHandler(log_file_path)
-        formatter = logging.Formatter("%(asctime)s %(name)s (%(levelname)s):"
-                                      " %(message)s")
+        formatter = logging.Formatter("%(asctime)s %(name)15s (%(levelname)8s): %(filename)20s:%(lineno)4s - "
+                                      "%(funcName)30s() - %(message)s - " + repr(_file_handler))
         _file_handler.setFormatter(formatter)
     return _file_handler
 
