@@ -460,6 +460,7 @@ class GrammarWrapper(GrammarWrapperBase):
 
     def _process_rules(self, words, words_rules, results,
                        manual_rule_ids):
+        print(words)
         # Iterates through this grammar's rules, attempting
         #  to decode each.  If successful, call that rule's
         #  method for processing the recognition and return.
